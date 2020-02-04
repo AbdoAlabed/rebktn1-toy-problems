@@ -23,4 +23,25 @@ var coins = [1, 2, 5, 10, 20, 50, 100, 200];
 
 function coinSums(total) {
   // your code here...
+  const result = [];
+  const multiResult = number => {
+    for (let i = 1; i <= number; i++) {
+      for (let j = number; j > 0; j--) {
+        if (i * j === number) {
+          result.push(`${i}p * ${j}`);
+        }
+        if (i + j === number && (i === 1 || j === 1)) {
+          if (i !== j) result.push(`${i}p * ${j} + 1 * 1p`);
+        } else if (i + j === number) {
+          result.push(`${i}p * 1 + ${j}p *1`);
+        }
+      }
+    }
+  };
+  multiResult(total);
+  for (let i = 0; i < result.length; i++) {
+    console.log(result[i]);
+  }
+  console.log(`coin sums is : ${result.length}`);
 }
+coinSums(5);
